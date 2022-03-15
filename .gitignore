@@ -1,4 +1,4 @@
-./ibmcos.yml
-./haku-gallery
-./build/
-./.idea/
+ibmcos.yml
+haku-gallery
+build/
+.idea/
