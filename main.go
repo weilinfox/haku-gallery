@@ -15,6 +15,13 @@ func main() {
 		configFile = "ibmcos.yml"
 	)
 
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: haku-gallery host:addr")
+		os.Exit(1)
+	}
+	listenAddr := os.Args[1]
+	fmt.Printf("Will listen at %s\n", listenAddr)
+
 	imageServer := ImageServer{}
 	err := imageServer.Configure(configFile)
 	if err != nil {
@@ -37,7 +44,7 @@ func main() {
 		w.Header().Set("Location", u)
 		w.WriteHeader(307)
 	})
-	err = http.ListenAndServe("0.0.0.0:8000", nil)
+	err = http.ListenAndServe(listenAddr, nil)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(3)
